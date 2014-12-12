@@ -93,6 +93,14 @@ Finally, start the main GitLab rails application:
 
     bundle exec foreman start
 
+Seed the GitLab CI database:
+
+    cd gitlab-ci && bundle exec rake db:create db:setup
+
+Start the GitLab CI rails application:
+
+    bundle exec foreman start
+
 To enable the OpenLDAP server, see the OpenLDAP instructions in this readme.
 
 END Post-installation
@@ -176,8 +184,8 @@ postgres is runnning (needed for db migration) and then run:
 make update
 ```
 
-This will update both `gitlab` and `gitlab-shell` and run any possible migrations.
-You can also update them separately by running `make gitlab-update` and
+This will update both `gitlab`, `gitlab-ci` and `gitlab-shell` and run any possible migrations.
+You can also update them separately by running `make gitlab-update` `make gitlab-ci-update` and
 `make gitlab-shell-update` respectively.
 
 ## OpenLDAP

@@ -1,9 +1,10 @@
 gitlab_repo = https://gitlab.com/gitlab-org/gitlab-ce.git
 gitlab_shell_repo = https://gitlab.com/gitlab-org/gitlab-shell.git
+gitlab_ci_repo = https://gitlab.com/gitlab-org/gitlab-ci.git
 gitlab_development_root = $(shell pwd)
 postgres_bin_dir = $(shell pg_config --bindir)
 
-all: gitlab-setup gitlab-shell-setup support-setup
+all: gitlab-setup gitlab-shell-setup gitlab-ci-setup support-setup
 
 # Set up the GitLab Rails app
 
@@ -48,9 +49,35 @@ gitlab-shell/config.yml:
 gitlab-shell/.bundle:
 	cd ${gitlab_development_root}/gitlab-shell && bundle install --without production --jobs 4
 
+# Set up gitlab-ci
+gitlab-ci-setup: gitlab-ci/.git gitlab-ci-config gitlab-ci/.bundle
+
+gitlab-ci/.git:
+	git clone ${gitlab_ci_repo} gitlab-ci
+
+gitlab-ci-config: gitlab-ci/application.yml gitlab-ci/database.yml gitlab-ci/unicorn.rb
+
+gitlab-ci/application.yml:
+	sed -e "s|port: 9000|port: 5000|" \
+		gitlab-ci/config/application.yml.example.development > gitlab-ci/config/application.yml
+
+gitlab-ci/database.yml:
+	sed -e "s|gitlabhq|gitlabci|"\
+		-e "s|/home/git|${gitlab_development_root}|"\
+		database.yml.example > gitlab-ci/config/database.yml
+
+gitlab-ci/unicorn.rb:
+	cp gitlab-ci/config/unicorn.rb.example.development gitlab-ci/config/unicorn.rb
+
+gitlab-ci/.bundle:
+	cd ${gitlab_development_root}/gitlab-ci && bundle install --without mysql production --jobs 4
+
+gitlab-ci-clean:
+	rm -rf gitlab-ci
+
 # Update gitlab and gitlab-shell
 
-update: gitlab-update gitlab-shell-update
+update: gitlab-update gitlab-shell-update gitlab-ci-update
 
 gitlab-update: gitlab/.git/pull
 	cd ${gitlab_development_root}/gitlab && \
@@ -61,11 +88,19 @@ gitlab-shell-update: gitlab-shell/.git/pull
 	cd ${gitlab_development_root}/gitlab-shell && \
 	bundle install --without production --jobs 4
 
+gitlab-ci-update: gitlab-ci/.git/pull
+	cd ${gitlab_development_root}/gitlab-ci && \
+		bundle install --without mysql production --jobs 4 && \
+		bundle exec rake db:migrate
+
 gitlab/.git/pull:
 	cd ${gitlab_development_root}/gitlab && git pull --ff-only
 
 gitlab-shell/.git/pull:
 	cd ${gitlab_development_root}/gitlab-shell && git pull --ff-only
+
+gitlab-ci/.git/pull:
+	cd ${gitlab_development_root}/gitlab-ci && git pull --ff-only
 
 # Set up supporting services
 
