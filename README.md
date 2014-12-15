@@ -1,6 +1,6 @@
 # GitLab Development Kit
 
-Run a GitLab development environment isolated in a directory.
+The GDK runs a GitLab development environment isolated in a directory.
 
 This project uses Foreman to run dedicated Postgres and Redis processes for
 GitLab development. All data is stored inside the gitlab-development-kit
@@ -16,10 +16,9 @@ sockets to avoid port conflicts.
 
 ## Installation
 
-The preferred way to use GitLab Development Kit is to install Ruby and
-dependencies on your 'native' OS. If you want to use
-[Vagrant](https://www.vagrantup.com/) instead please see [the instructions for
-our (experimental) Vagrantfile](#vagrant).
+The preferred way to use GitLab Development Kit is to install Ruby and dependencies on your 'native' OS.
+We strongly recommend the native install since it is much faster that a virtualized one.
+If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the instructions for our (experimental) Vagrantfile](#vagrant).
 
 ### Pre-installation
 
@@ -257,3 +256,7 @@ charlock_holmes:
 gem uninstall charlock_holmes
 bundle install # should reinstall charlock_holmes
 ```
+
+### Other problems
+
+Please open an issue on the [GDK issue tracker](https://gitlab.com/gitlab-org/gitlab-development-kit/issues).
