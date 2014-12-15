@@ -27,6 +27,8 @@ If you do not have the dependencies below you will experience strange errors dur
 1. Ruby 2.1.3 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
 1. Bundler
 
+**DO NOT** run the installation as a root user
+
 ### Install dependencies
 
 #### OS X 10.9
