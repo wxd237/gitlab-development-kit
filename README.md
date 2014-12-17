@@ -97,6 +97,9 @@ Finally, start the main GitLab rails application:
 
     bundle exec foreman start
 
+Now you can go to http://localhost:3000 in your browser.
+The development login credentials are `root` and `5iveL!fe`
+
 To enable the OpenLDAP server, see the OpenLDAP instructions in this readme.
 
 END Post-installation
@@ -156,6 +159,7 @@ bundle exec foreman start
 ```
 
 Now you can go to http://localhost:3000 in your browser.
+The development login credentials are `root` and `5iveL!fe`
 
 ### Running the tests
 
@@ -167,6 +171,11 @@ In order to run the test you can use the following commands:
 
 Note: You can't run `rspec .` since this will try to run all the `_spec.rb`
 files it can find, also the ones in `/tmp`
+
+To run a single test file you can use:
+
+- `bundle exec rspec spec/controllers/commit_controller_spec.rb` for a rspec test
+- `bundle exec spinach features/project/issues/milestones.feature` for a spinach test
 
 ## Update gitlab and gitlab-shell repositories
 
