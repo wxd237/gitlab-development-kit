@@ -59,6 +59,32 @@ Please contribute this by sending a merge request.
 
 Please contribute this by sending a merge request.
 
+
+#### CentOS
+
+CentOS 6.5 
+
+```
+sudo yum install http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm
+sudo yum install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+sudo yum install postgresql93-server libicu-devel cmake gcc-c++ redis
+sudo yum install fontconfig freetype libfreetype.so.6 libfontconfig.so.1 libstdc++.so.6
+
+sudo gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+sudo curl -sSL https://get.rvm.io | bash -s stable
+sudo source /etc/profile.d/rvm.sh
+sudo rvm install 2.1
+sudo rvm use 2.1
+#Ensure your user is in rvm group
+sudo usermod -a -G rvm <username>
+#add iptables exceptions, or sudo service stop iptables
+```
+PhantomJS - You will want to download the required version of PhantomJS and place the binary on the path.
+
+Git 1.7.1-3 is the latest git binary for CentOS 6.5.  Spinach tests will fail due to a higher version requirement by gitlab.
+You must download the latest git source compatbile with Gitlab, compile, make install over the top of the existing /usr prefix. 
+Some of the packages above are in support of that.
+
 ### Clone GitLab Development Kit repository
 
 ```
