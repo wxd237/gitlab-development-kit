@@ -24,7 +24,7 @@ If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the
 
 If you do not have the dependencies below you will experience strange errors during installation.
 
-1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
+1. Ruby 2.2.0 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
 1. Bundler
 
 **DO NOT** run the installation as a root user
