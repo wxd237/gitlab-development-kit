@@ -81,9 +81,9 @@ sudo usermod -a -G rvm <username>
 ```
 PhantomJS - You will want to download the required version of PhantomJS and place the binary on the path.
 
-Git 1.7.1-3 is the latest git binary for CentOS 6.5.  Spinach tests will fail due to a higher version requirement by gitlab.
-You must download the latest git source compatbile with Gitlab, compile, make install over the top of the existing /usr prefix. 
-Some of the packages above are in support of that.
+Git 1.7.1-3 is the latest git binary for CentOS 6.5 and gitlab.  Spinach tests will fail due to a higher version requirement by gitlab.
+You can follow the instructions found here: https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos#add-puias-computational-repository
+to install a newer binary version of git.
 
 ### Clone GitLab Development Kit repository
 
