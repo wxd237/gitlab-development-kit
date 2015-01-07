@@ -101,6 +101,15 @@ Start the GitLab CI rails application:
 
     bundle exec foreman start
 
+Setup the GitLab Runner:
+
+    cd gitlab-runner
+    CI_SERVER_URL=http://localhost:9000 bundle exec ./bin/setup
+
+Start the GitLab Runner:
+
+    bundle exec ./bin/runner
+
 To enable the OpenLDAP server, see the OpenLDAP instructions in this readme.
 
 END Post-installation
