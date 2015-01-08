@@ -59,8 +59,7 @@ gitlab-ci/.git:
 gitlab-ci-config: gitlab-ci/application.yml gitlab-ci/database.yml gitlab-ci/unicorn.rb
 
 gitlab-ci/application.yml:
-	sed -e "s|port: 9000|port: 5000|" \
-		gitlab-ci/config/application.yml.example.development > gitlab-ci/config/application.yml
+	cp gitlab-ci/config/application.yml.example.development gitlab-ci/config/application.yml
 
 gitlab-ci/database.yml:
 	sed -e "s|gitlabhq|gitlabci|"\
