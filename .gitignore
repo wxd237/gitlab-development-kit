@@ -3,6 +3,7 @@ gitlab-shell/
 gitlab-satellites/
 repositories/
 gitlab/
+gitlab-ci/
 Procfile
 postgresql/data
 postgresql/.s.*
