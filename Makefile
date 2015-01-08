@@ -1,10 +1,11 @@
 gitlab_repo = https://gitlab.com/gitlab-org/gitlab-ce.git
 gitlab_shell_repo = https://gitlab.com/gitlab-org/gitlab-shell.git
 gitlab_ci_repo = https://gitlab.com/gitlab-org/gitlab-ci.git
+gitlab_runner_repo = https://gitlab.com/gitlab-org/gitlab-ci-runner.git
 gitlab_development_root = $(shell pwd)
 postgres_bin_dir = $(shell pg_config --bindir)
 
-all: gitlab-setup gitlab-shell-setup gitlab-ci-setup support-setup
+all: gitlab-setup gitlab-shell-setup gitlab-ci-setup gitlab-runner-setup support-setup
 
 # Set up the GitLab Rails app
 
@@ -75,9 +76,21 @@ gitlab-ci/.bundle:
 gitlab-ci-clean:
 	rm -rf gitlab-ci
 
-# Update gitlab and gitlab-shell
+# Set up gitlab-runner
+gitlab-runner-setup: gitlab-runner/.git gitlab-runner/.bundle
 
-update: gitlab-update gitlab-shell-update gitlab-ci-update
+gitlab-runner/.git:
+	git clone ${gitlab_runner_repo} gitlab-runner
+
+gitlab-runner/.bundle:
+	cd ${gitlab_development_root}/gitlab-runner && bundle install
+
+gitlab-runner-clean:
+	rm -rf gitlab-runner
+
+# Update gitlab, gitlab-shell, gitlab-ci and gitlab-runner
+
+update: gitlab-update gitlab-shell-update gitlab-ci-update gitlab-runner-update
 
 gitlab-update: gitlab/.git/pull
 	cd ${gitlab_development_root}/gitlab && \
@@ -93,6 +106,10 @@ gitlab-ci-update: gitlab-ci/.git/pull
 		bundle install --without mysql production --jobs 4 && \
 		bundle exec rake db:migrate
 
+gitlab-runner-update: gitlab-runner/.git/pull
+	cd ${gitlab_development_root}/gitlab-runner && \
+	bundle install
+
 gitlab/.git/pull:
 	cd ${gitlab_development_root}/gitlab && git pull --ff-only
 
@@ -101,6 +118,9 @@ gitlab-shell/.git/pull:
 
 gitlab-ci/.git/pull:
 	cd ${gitlab_development_root}/gitlab-ci && git pull --ff-only
+
+gitlab-runner/.git/pull:
+	cd ${gitlab_development_root}/gitlab-runner && git pull --ff-only
 
 # Set up supporting services
 
