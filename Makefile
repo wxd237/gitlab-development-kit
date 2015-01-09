@@ -56,7 +56,7 @@ gitlab-ci-setup: gitlab-ci/.git gitlab-ci-config gitlab-ci/.bundle
 gitlab-ci/.git:
 	git clone ${gitlab_ci_repo} gitlab-ci
 
-gitlab-ci-config: gitlab-ci/application.yml gitlab-ci/database.yml gitlab-ci/unicorn.rb
+gitlab-ci-config: gitlab-ci/application.yml gitlab-ci/database.yml gitlab-ci/config/resque.yml gitlab-ci/unicorn.rb
 
 gitlab-ci/application.yml:
 	cp gitlab-ci/config/application.yml.example.development gitlab-ci/config/application.yml
@@ -65,6 +65,9 @@ gitlab-ci/database.yml:
 	sed -e "s|gitlabhq|gitlabci|"\
 		-e "s|/home/git|${gitlab_development_root}|"\
 		database.yml.example > gitlab-ci/config/database.yml
+
+gitlab-ci/config/resque.yml:
+	sed "s|/home/git|${gitlab_development_root}|" redis/resque.yml.example > $@
 
 gitlab-ci/unicorn.rb:
 	cp gitlab-ci/config/unicorn.rb.example.development gitlab-ci/config/unicorn.rb
