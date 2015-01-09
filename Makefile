@@ -85,7 +85,7 @@ gitlab-runner/.git:
 	git clone ${gitlab_runner_repo} gitlab-runner
 
 gitlab-runner/.bundle:
-	cd ${gitlab_development_root}/gitlab-runner && bundle install
+	cd ${gitlab_development_root}/gitlab-runner && bundle install --jobs 4
 
 gitlab-runner-clean:
 	rm -rf gitlab-runner
