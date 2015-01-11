@@ -1,7 +1,7 @@
 # GitLab Development Kit
 
 The GDK runs a GitLab development environment isolated in a directory.
-
+This environemnt contains GitLab CE, CI and Runner.
 This project uses Foreman to run dedicated Postgres and Redis processes for
 GitLab development. All data is stored inside the gitlab-development-kit
 directory. All connections to supporting services go through Unix domain
