@@ -35,20 +35,20 @@ If you do not have the dependencies below you will experience strange errors dur
 
 ```
 brew tap homebrew/dupes
-brew install redis postgresql phantomjs libiconv icu4c pkg-config cmake
+brew install redis postgresql phantomjs libiconv icu4c pkg-config cmake nodejs
 bundle config build.nokogiri --with-iconv-dir=/usr/local/opt/libiconv
 ```
 
 #### Ubuntu
 
 ```
-sudo apt-get install postgresql libpq-dev phantomjs redis-server libicu-dev cmake g++
+sudo apt-get install postgresql libpq-dev phantomjs redis-server libicu-dev cmake g++ nodejs
 ```
 
 #### Arch Linux
 
 ```
-sudo pacman -S postgresql phantomjs redis postgresql-libs icu
+sudo pacman -S postgresql phantomjs redis postgresql-libs icu nodejs
 ```
 
 #### Debian
