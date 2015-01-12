@@ -20,6 +20,7 @@ if [ $(id -u vagrant) != $(stat -c %u /vagrant) ]; then
 else
 	DEV_USER=vagrant
 fi
+sudo -u $DEV_USER -i bash -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
 sudo -u $DEV_USER -i bash -c "curl -sSL https://get.rvm.io | bash -s stable --ruby"
 EOT
 
