@@ -19,17 +19,16 @@ sockets to avoid port conflicts.
 The preferred way to use GitLab Development Kit is to install Ruby and dependencies on your 'native' OS.
 We strongly recommend the native install since it is much faster that a virtualized one.
 If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the instructions for our (experimental) Vagrantfile](#vagrant).
+**DO NOT** run the installation as a root user
 
-### Pre-installation
+### Install dependencies
+
+#### Prerequisites for all platforms
 
 If you do not have the dependencies below you will experience strange errors during installation.
 
 1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
-1. Bundler
-
-**DO NOT** run the installation as a root user
-
-### Install dependencies
+1. Bundler `gem install bundler`
 
 #### OS X 10.9
 
