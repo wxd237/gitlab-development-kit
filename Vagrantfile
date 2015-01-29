@@ -9,7 +9,7 @@ VAGRANTFILE_API_VERSION = "2"
 $apt_reqs = <<EOT
 apt-get update
 apt-get -y install git g++ pkg-config
-apt-get -y install postgresql libpq-dev phantomjs redis-server libicu-dev cmake
+apt-get -y install postgresql libpq-dev phantomjs redis-server libicu-dev cmake libkrb5-dev
 EOT
 
 # CentOS 6 kernel doesn't suppose UID mapping (affects vagrant-lxc mostly).
