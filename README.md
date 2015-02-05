@@ -19,7 +19,6 @@ sockets to avoid port conflicts.
 The preferred way to use GitLab Development Kit is to install Ruby and dependencies on your 'native' OS.
 We strongly recommend the native install since it is much faster that a virtualized one.
 If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the instructions for our (experimental) Vagrantfile](#vagrant).
-**DO NOT** run the installation as a root user
 
 ### Install dependencies
 
@@ -27,6 +26,7 @@ If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the
 
 If you do not have the dependencies below you will experience strange errors during installation.
 
+1. A user, this can be your normal user but **DO NOT** run the installation as a root user
 1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
 1. Bundler `gem install bundler`
 
@@ -34,14 +34,14 @@ If you do not have the dependencies below you will experience strange errors dur
 
 ```
 brew tap homebrew/dupes
-brew install redis postgresql phantomjs libiconv icu4c pkg-config cmake nodejs
+brew install git redis postgresql phantomjs libiconv icu4c pkg-config cmake nodejs
 bundle config build.nokogiri --with-iconv-dir=/usr/local/opt/libiconv
 ```
 
 #### Ubuntu
 
 ```
-sudo apt-get install postgresql libpq-dev phantomjs redis-server libicu-dev cmake g++ nodejs libkrb5-dev
+sudo apt-get install git postgresql libpq-dev phantomjs redis-server libicu-dev cmake g++ nodejs libkrb5-dev
 ```
 
 #### Arch Linux
@@ -110,15 +110,15 @@ make gitlab_repo=git@gitlab.com:example/gitlab-ce.git gitlab_shell_repo=git@gitl
 
 ### Post-installation
 
-Start Redis and PostgreSQL by running the command below.
+Start Redis and PostgreSQL by running the command below in the root of the project:
 
     bundle exec foreman start
 
-Seed the main GitLab database:
+Keep the above command running and seed the main GitLab database from a new terminal session:
 
     cd gitlab && bundle exec rake db:create dev:setup
 
-Finally, start the main GitLab rails application:
+Finally, start the main GitLab rails application in the gitlab subdirectory of the project:
 
     bundle exec foreman start
 
