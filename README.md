@@ -52,7 +52,22 @@ sudo pacman -S postgresql phantomjs redis postgresql-libs icu nodejs
 
 #### Debian
 
-Please contribute this by sending a merge request.
+```
+sudo apt-get install postgresql libpq-dev redis-server libicu-dev cmake g++ nodejs libkrb5-dev
+```
+
+You need to install phantomjs manually
+
+```
+PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
+cd ~
+wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+tar -xvjf $PHANTOM_JS.tar.bz2
+sudo mv $PHANTOM_JS /usr/local/share
+sudo ln -s /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+phantomjs --version
+```
+
 
 #### RedHat
 
