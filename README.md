@@ -1,7 +1,7 @@
 # GitLab Development Kit
 
 The GDK runs a GitLab development environment isolated in a directory.
-This environemnt contains GitLab CE, CI and Runner.
+This environment contains GitLab CE, CI and Runner.
 This project uses Foreman to run dedicated Postgres and Redis processes for
 GitLab development. All data is stored inside the gitlab-development-kit
 directory. All connections to supporting services go through Unix domain
@@ -27,7 +27,8 @@ If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the
 If you do not have the dependencies below you will experience strange errors during installation.
 
 1. A user, this can be your normal user but **DO NOT** run the installation as a root user
-1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.)
+1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.), **DO NOT** use the system Ruby, because
+it requires sudo to install gems.
 1. Bundler `gem install bundler`
 
 #### OS X 10.9
