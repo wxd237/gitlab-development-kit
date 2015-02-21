@@ -26,12 +26,13 @@ If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the
 
 If you do not have the dependencies below you will experience strange errors during installation.
 
-1. A user, this can be your normal user but **DO NOT** run the installation as a root user
-1. Ruby 2.1.5 with your method of choice (RVM, ruby-build, rbenv, chruby, etc.), **DO NOT** use the system Ruby, because
-it requires sudo to install gems.
-1. Bundler `gem install bundler`
+1. A non-root unix user, this can be your normal user but **DO NOT** run the installation as a root user
+1. Ruby 2.1.5 installed with a ruby version manager (RVM, ruby-build, rbenv, chruby, etc.), **DO NOT** use the system Ruby
+1. bundler, which you can install with `gem install bundler`
 
 #### OS X 10.9
+
+Please read the prerequisites for all platforms.
 
 ```
 brew tap homebrew/dupes
@@ -41,17 +42,23 @@ bundle config build.nokogiri --with-iconv-dir=/usr/local/opt/libiconv
 
 #### Ubuntu
 
+Please read the prerequisites for all platforms.
+
 ```
 sudo apt-get install git postgresql libpq-dev phantomjs redis-server libicu-dev cmake g++ nodejs libkrb5-dev
 ```
 
 #### Arch Linux
 
+Please read the prerequisites for all platforms.
+
 ```
 sudo pacman -S postgresql phantomjs redis postgresql-libs icu nodejs
 ```
 
 #### Debian
+
+Please read the prerequisites for all platforms.
 
 ```
 sudo apt-get install postgresql libpq-dev redis-server libicu-dev cmake g++ nodejs libkrb5-dev
@@ -69,15 +76,17 @@ sudo ln -s /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 phantomjs --version
 ```
 
-
 #### RedHat
+
+Please read the prerequisites for all platforms.
 
 Please contribute this by sending a merge request.
 
-
 #### CentOS
 
-CentOS 6.5 
+Please read the prerequisites for all platforms.
+
+This is tested on CentOS 6.5
 
 ```
 sudo yum install http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm
