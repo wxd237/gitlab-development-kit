@@ -61,7 +61,7 @@ sudo pacman -S postgresql phantomjs redis postgresql-libs icu nodejs
 Please read the prerequisites for all platforms.
 
 ```
-sudo apt-get install postgresql libpq-dev redis-server libicu-dev cmake g++ nodejs libkrb5-dev
+sudo apt-get install postgresql libpq-dev redis-server libicu-dev cmake g++ nodejs libkrb5-dev ed
 ```
 
 You need to install phantomjs manually
