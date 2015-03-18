@@ -120,7 +120,8 @@ gitlab-shell/.git/pull:
 	cd ${gitlab_development_root}/gitlab-shell && git pull --ff-only
 
 gitlab-ci/.git/pull:
-	cd ${gitlab_development_root}/gitlab-ci && git pull --ff-only
+	cd ${gitlab_development_root}/gitlab-ci &&  git checkout db/schema.rb && \
+		git pull --ff-only
 
 gitlab-runner/.git/pull:
 	cd ${gitlab_development_root}/gitlab-runner && git pull --ff-only
