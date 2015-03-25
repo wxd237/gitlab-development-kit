@@ -113,14 +113,14 @@ gitlab-runner-update: gitlab-runner/.git/pull
 	bundle install
 
 gitlab/.git/pull:
-	cd ${gitlab_development_root}/gitlab && git checkout db/schema.rb && \
+	cd ${gitlab_development_root}/gitlab && git checkout -- db/schema.rb && \
 		git pull --ff-only
 
 gitlab-shell/.git/pull:
 	cd ${gitlab_development_root}/gitlab-shell && git pull --ff-only
 
 gitlab-ci/.git/pull:
-	cd ${gitlab_development_root}/gitlab-ci &&  git checkout db/schema.rb && \
+	cd ${gitlab_development_root}/gitlab-ci &&  git checkout -- db/schema.rb && \
 		git pull --ff-only
 
 gitlab-runner/.git/pull:
