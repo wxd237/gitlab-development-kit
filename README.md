@@ -106,7 +106,7 @@ sudo usermod -a -G rvm <username>
 PhantomJS - You will want to download the required version of PhantomJS and place the binary on the path.
 
 Git 1.7.1-3 is the latest git binary for CentOS 6.5 and gitlab.  Spinach tests will fail due to a higher version requirement by gitlab.
-You can follow the instructions found [here] (https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos#add-puias-computational-repository)
+You can follow the instructions found [here](https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos#add-puias-computational-repository)
 to install a newer binary version of git.
 
 ### Clone GitLab Development Kit repository
@@ -118,8 +118,8 @@ cd gitlab-development-kit
 
 ### Install the repositories and gems
 
-The Makefile will clone the repositories, install the Gem bundles and set up
-basic configuration files.
+The `Makefile` will clone the repositories, install the Gem bundles and set up
+basic configuration files. Pick one:
 
 ```
 # Clone the official repositories of gitlab and gitlab-shell
@@ -172,7 +172,7 @@ To enable the OpenLDAP server, see the OpenLDAP instructions in this readme.
 END Post-installation
 
 Please do not delete the 'END Post-installation' line above. It is used to
-print the post-installation message from the Makefile.
+print the post-installation message from the `Makefile`.
 
 ### Vagrant
 
