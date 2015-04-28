@@ -18,7 +18,8 @@ sockets to avoid port conflicts.
 
 The preferred way to use GitLab Development Kit is to install Ruby and dependencies on your 'native' OS.
 We strongly recommend the native install since it is much faster than a virtualized one.
-If you want to use [Vagrant](https://www.vagrantup.com/) instead please see [the instructions for our (experimental) Vagrantfile](#vagrant).
+If you want to use [Vagrant](https://www.vagrantup.com/) instead/need to do development from Windows 
+please see [the instructions for our (experimental) Vagrantfile](#vagrant).
 
 ### Install dependencies
 
@@ -178,31 +179,48 @@ Please do not delete the 'END Post-installation' line above. It is used to
 print the post-installation message from the `Makefile`.
 
 ### Vagrant
-
 [Vagrant](http://www.vagrantup.com) is a tool for setting up identical development
-environments including all dependencies. Vagrant will default to using
-[VirtualBox](http://www.virtualbox.org), but it has many plugins for different
-environments.
+environments including all dependencies regardless of the host platform you are using. 
+Vagrant will default to using [VirtualBox](http://www.virtualbox.org), but it has 
+many plugins for different environments.
 
 Vagrant allows you to develop GitLab without affecting your host machine (but we 
 recommend developing GitLab on metal if you can).
-Vagrant can be very slow since the NFS server is on the host OS and GitLab 
+Vagrant can be very slow since the files are synced between the host OS and GitLab 
 (testing) accesses a lot of files.
-You can improve the speed by running NFS on the guest OS but in that case you 
-should take care to not lose the files when you shut down the VM.
+You can improve the speed by keeping all the files on the guest OS but in that case you 
+should take care to not lose the files if you destroy or update the VM.
 
-Once you have Vagrant installed, simply type `vagrant up` in this directory. Vagrant
-will download an OS image, bring it up, and install all the prerequisites. You then
-type `vagrant ssh` to ssh into the box. This directory will be available as a shared
-folder in `/vagrant/` and you can continue at 
+#### Install
+1. [Disable Hyper-V](http://superuser.com/a/642027/143551) (Windows users) then enable virtualization technology via the BIOS.
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) & [Vagrant](http://www.vagrantup.com).
+3. Run `vagrant up` in this directory (from an elevated command prompt if on Windows)
+  a. Vagrant will download an OS image, bring it up, and install all the prerequisites.
+4. Run `vagrant ssh` to SSH into the box.
+5. Run `cd ~/gitlab-development-kit/` and continue setup at 
 *[Install the repositories and gems](#install-the-repositories-and-gems)* above.
 
-Typically you keep editing on the host machine but run `make`, `bundle exec`, etc.
-inside the `vagrant ssh` session.
+#### Development details
+* Open development environment by running `vagrant up` & `vagrant ssh` (from an elevated command prompt if on Windows).
+* Follow the general [development guidelines](#development) but running the commands in the `vagrant ssh` session.
+* Files in the `gitlab`, `gitlab-shell`, `gitlab-ci`, and `gitlab-runner` folders will be synced between the host OS & guest OS so can be edited on either the host (under this folder) or guest OS (under `~/gitlab-development-kit/`).
 
-Note: On some setups the shared folder will have the wrong user. This is detected
+#### Exit
+* When you want to shutdown Vagrant run `exit` from the guest OS and then `vagrant halt`
+from the host OS.
+
+#### Troubleshooting
+
+* On some setups the shared folder will have the wrong user. This is detected
 by the Vagrantfile and you should `sudo su - build` to switch to the correct user
 in that case.
+* If you get a "Timed out while waiting for the machine to boot" message you likely
+forgot to [disable Hyper-V](http://superuser.com/a/642027/143551) or enable virtualization technology via the BIOS.
+* If you have continious problems starting Vagrant you can uncomment `vb.gui = true` 
+to view any error messages.
+* If you have problems running `support/edit-gitlab.yml` (bash script despite file extension)
+ see http://stackoverflow.com/a/5514351/1233435.
+* If you have errors with symlinks or Ruby during initialization make sure you ran `vagrant up` from an elevated command prompt (Windows users). 
 
 ## Development
 
