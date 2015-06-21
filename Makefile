@@ -13,6 +13,7 @@ gitlab-setup: gitlab/.git gitlab-config gitlab/.bundle
 
 gitlab/.git:
 	git clone ${gitlab_repo} gitlab
+	sed -i 's/rubygems.org/ruby.taobao.org/g' gitlab/Gemfile  
 
 gitlab-config: gitlab/config/gitlab.yml gitlab/config/database.yml gitlab/config/unicorn.rb gitlab/config/resque.yml
 
@@ -39,6 +40,7 @@ gitlab-shell-setup: gitlab-shell/.git gitlab-shell/config.yml gitlab-shell/.bund
 
 gitlab-shell/.git:
 	git clone ${gitlab_shell_repo} gitlab-shell
+	sed -i 's/rubygems.org/ruby.taobao.org/g' gitlab-shell/Gemfile  
 
 gitlab-shell/config.yml:
 	sed -e "s|/home/git|${gitlab_development_root}|"\
@@ -55,6 +57,7 @@ gitlab-ci-setup: gitlab-ci/.git gitlab-ci-config gitlab-ci/.bundle
 
 gitlab-ci/.git:
 	git clone ${gitlab_ci_repo} gitlab-ci
+	sed -i 's/rubygems.org/ruby.taobao.org/g' gitlab-ci/Gemfile
 
 gitlab-ci-config: gitlab-ci/config/application.yml gitlab-ci/config/database.yml gitlab-ci/config/resque.yml gitlab-ci/config/unicorn.rb
 
@@ -83,6 +86,7 @@ gitlab-runner-setup: gitlab-runner/.git gitlab-runner/.bundle
 
 gitlab-runner/.git:
 	git clone ${gitlab_runner_repo} gitlab-runner
+	sed -i 's/rubygems.org/ruby.taobao.org/g' gitlab-runner/Gemfile     
 
 gitlab-runner/.bundle:
 	cd ${gitlab_development_root}/gitlab-runner && bundle install --jobs 4
